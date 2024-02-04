@@ -1,1 +1,7 @@
-google gen ai API: AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ
+streamlit
+google-generativeai
+python-dotenv
+langchain
+PyPDF2
+faiss-cpu
+langchain_google_genai
