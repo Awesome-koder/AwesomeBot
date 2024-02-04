@@ -10,7 +10,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 
-os.environ.setdefault("GOOGLE_API_KEY","ENTER YOUR GOOGLE API KEY")
+os.environ.setdefault("GOOGLE_API_KEY","ENTER YOUR GOOGLE API KEY HERE")
 
 load_dotenv()
 os.environ.get("GOOGLE_API_KEY")
