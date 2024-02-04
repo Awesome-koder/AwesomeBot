@@ -4,15 +4,17 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import google.generativeai as genai
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 
+os.environ.setdefault("GOOGLE_API_KEY","g.a000fwguSmLhyA0Xd4WfJWBt_FJ6W-2JVk_7E7HmlSwFdxYfSKIjAfQemRBSYCCTQ4hxvaGhGwACgYKAewSAQASFQHGX2Miejgd7ev2WycomrB1StC7hRoVAUF8yKouul-vCU1iFAKbf45g9MEB0076")
+
 load_dotenv()
-os.getenv("g.a000fwguSmLhyA0Xd4WfJWBt_FJ6W-2JVk_7E7HmlSwFdxYfSKIjAfQemRBSYCCTQ4hxvaGhGwACgYKAewSAQASFQHGX2Miejgd7ev2WycomrB1StC7hRoVAUF8yKouul-vCU1iFAKbf45g9MEB0076")
-genai.configure(api_key=os.getenv("g.a000fwguSmLhyA0Xd4WfJWBt_FJ6W-2JVk_7E7HmlSwFdxYfSKIjAfQemRBSYCCTQ4hxvaGhGwACgYKAewSAQASFQHGX2Miejgd7ev2WycomrB1StC7hRoVAUF8yKouul-vCU1iFAKbf45g9MEB0076"))
+os.environ.get("GOOGLE_API_KEY")
+genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
 
 def get_pdf_text(pdf_docs):
     text=""
@@ -57,7 +59,7 @@ def get_conversational_chain():
 
 
 def user_input(user_question):
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key="g.a000fwguSmLhyA0Xd4WfJWBt_FJ6W-2JVk_7E7HmlSwFdxYfSKIjAfQemRBSYCCTQ4hxvaGhGwACgYKAewSAQASFQHGX2Miejgd7ev2WycomrB1StC7hRoVAUF8yKouul-vCU1iFAKbf45g9MEB0076")
+    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     
     new_db = FAISS.load_local("faiss_index", embeddings)
     docs = new_db.similarity_search(user_question)
@@ -77,7 +79,7 @@ def user_input(user_question):
 
 def main():
     st.set_page_config("Multi PDF Chatbot", page_icon = ":scroll:")
-    st.header("Multi-PDF's 📚 - Chat Agent 🤖 ")
+    st.header("Multi-PDF's 📚 - AWESOMEKODER-BOT 🤖 ")
 
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
