@@ -56,7 +56,8 @@ The application follows these steps to provide responses to your questions:
 
 Clone the repository:
 
-`git clone https://github.com/GURPREETKAURJETHRA/Multi-PDFs_ChatApp_AI-Agent.git`
+`git clone`
+https://github.com/Awesome-koder/AwesomeBot.git
 
 Install the required Python packages:
 
