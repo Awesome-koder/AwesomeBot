@@ -24,16 +24,6 @@ def get_pdf_text(pdf_docs):
             text+= page.extract_text()
     return  text
 
-def load_data(pdf_docs):
-    # Data validation steps (if applicable)
-    with open(pdf_docs, "rb") as f:
-        try:
-            data = pickle.load(f)
-        except pickle.UnpicklingError:
-            # Handle the error (e.g., raise an exception, log the error)
-            raise ValueError("Error unpickling data") from e
-    return data
-
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
     chunks = text_splitter.split_text(text)
