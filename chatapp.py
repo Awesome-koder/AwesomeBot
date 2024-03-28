@@ -9,6 +9,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
+import pickle  # Import only if deserialization is unavoidable
 
 os.environ.setdefault("GOOGLE_API_KEY","AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ")
 
@@ -24,7 +25,15 @@ def get_pdf_text(pdf_docs):
             text+= page.extract_text()
     return  text
 
-
+def load_data(pdf_docs):
+    # Data validation steps (if applicable)
+    with open(pdf_docs, "rb") as f:
+        try:
+            data = pickle.load(f)
+        except pickle.UnpicklingError:
+            # Handle the error (e.g., raise an exception, log the error)
+            raise ValueError("Error unpickling data") from e
+    return data
 
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
@@ -111,7 +120,6 @@ def main():
         </div>
         """,
         unsafe_allow_html=True
-        allow_dangerous_deserialization=True
     )
 
 if __name__ == "__main__":
