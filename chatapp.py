@@ -9,7 +9,6 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
-import pickle  # Import only if deserialization is unavoidable
 
 os.environ.setdefault("GOOGLE_API_KEY","AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ")
 
@@ -108,7 +107,6 @@ def main():
                 text_chunks = get_text_chunks(raw_text) # get the text chunks
                 get_vector_store(text_chunks) # create vector store
                 st.success("Done")
-                load_data(pdf_docs)
         
         st.write("---")
         st.write("AI App created by @ ANKIT MISHRA")
