@@ -111,6 +111,7 @@ def main():
         </div>
         """,
         unsafe_allow_html=True
+        allow_dangerous_deserialization=True
     )
 
 if __name__ == "__main__":
