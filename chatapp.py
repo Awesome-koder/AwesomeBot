@@ -108,6 +108,7 @@ def main():
                 text_chunks = get_text_chunks(raw_text) # get the text chunks
                 get_vector_store(text_chunks) # create vector store
                 st.success("Done")
+                load_data(pdf_docs)
         
         st.write("---")
         st.write("AI App created by @ ANKIT MISHRA")
