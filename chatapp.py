@@ -77,7 +77,7 @@ def user_input(user_question):
 
 def main():
     st.set_page_config("AWESOMEKODER_BOT", page_icon = ":scroll:")
-    st.header("Multi-PDF's 📚 - AwesomeKoder-BOT 🤖 ")
+    st.header(" 📚 - Awesome-BOT 🤖 ")
 
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
