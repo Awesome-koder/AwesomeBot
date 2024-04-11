@@ -20,19 +20,13 @@ from langchain.prompts import PromptTemplate
 
 from dotenv import load_dotenv
 
-
-
 os.environ.setdefault("GOOGLE_API_KEY","AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ")
-
-
 
 load_dotenv()
 
 os.environ.get("GOOGLE_API_KEY")
 
 genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
-
-
 
 def get_pdf_text(pdf_docs):
 
@@ -48,12 +42,6 @@ def get_pdf_text(pdf_docs):
 
     return  text
 
-
-
-
-
-
-
 def get_text_chunks(text):
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
@@ -61,10 +49,6 @@ def get_text_chunks(text):
     chunks = text_splitter.split_text(text)
 
     return chunks
-
-
-
-
 
 def get_vector_store(text_chunks):
 
@@ -74,13 +58,7 @@ def get_vector_store(text_chunks):
 
     vector_store.save_local("faiss_index")
 
-
-
-
-
 def get_conversational_chain():
-
-
 
     prompt_template = """
 
@@ -92,57 +70,27 @@ def get_conversational_chain():
 
     Question: \n{question}\n
 
-
-
     Answer:
 
     """
-
-
-
     model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.3)
-
-
-
     prompt = PromptTemplate(template = prompt_template, input_variables = ["context", "question"])
-
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
-
-
-
     return chain
-
-
-
-
-
-
 
 def user_input(user_question):
 
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
 
-    
-
     if os.path.exists("faiss_index"):  # Check if file exists
      new_db = FAISS.load_local("faiss_index", embeddings)
      docs = new_db.similarity_search(user_question)
-
-
-
      chain = get_conversational_chain()
-
-
-
-    
-
+     
      response = chain(
-
         {"input_documents":docs, "question": user_question}
 
         , return_only_outputs=True)
-
-
 
      print(response)
 
@@ -157,20 +105,13 @@ def main():
 
     st.header("Multi-PDF's 📚 - AwesomeKoder-BOT 🤖 ")
 
-
-
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
-
     with st.sidebar:
-
-
 
         st.image("img/Robot.jpg")
 
         st.write("---")
-
-        
 
         st.title("📁 PDF File's Section")
 
@@ -187,8 +128,6 @@ def main():
                 get_vector_store(text_chunks) # create vector store
 
                 st.success("Done")
-
-        
 
         st.write("---")
 
@@ -213,10 +152,4 @@ def main():
         unsafe_allow_html=True
 
     )
-
-
-
-if __name__ == "__main__":
-
-    main()
-
+main()
