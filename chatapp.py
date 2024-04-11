@@ -126,20 +126,17 @@ def user_input(user_question):
 
     if os.path.exists("faiss_index"):  # Check if file exists
      new_db = FAISS.load_local("faiss_index", embeddings)
-    else:
-        st.warning("Please upload and process PDFs before asking questions.")
-
-    docs = new_db.similarity_search(user_question)
+     docs = new_db.similarity_search(user_question)
 
 
 
-    chain = get_conversational_chain()
+     chain = get_conversational_chain()
 
 
 
     
 
-    response = chain(
+     response = chain(
 
         {"input_documents":docs, "question": user_question}
 
@@ -147,17 +144,12 @@ def user_input(user_question):
 
 
 
-    print(response)
+     print(response)
 
-    st.write("Reply: ", response["output_text"])
+     st.write("Reply: ", response["output_text"])
 
-
-
-
-
-
-
-
+    else:
+        st.warning("Please upload and process PDFs before asking questions.")
 
 def main():
 
