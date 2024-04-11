@@ -124,7 +124,10 @@ def user_input(user_question):
 
     
 
-    new_db = FAISS.load_local("faiss_index", embeddings)
+    if os.path.exists("faiss_index"):  # Check if file exists
+     new_db = FAISS.load_local("faiss_index", embeddings)
+    else:
+        st.warning("Please upload and process PDFs before asking questions.")
 
     docs = new_db.similarity_search(user_question)
 
