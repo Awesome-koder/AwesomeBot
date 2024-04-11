@@ -170,13 +170,6 @@ def main():
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
 
-
-    if user_question:
-
-        user_input(user_question)
-
-
-
     with st.sidebar:
 
 
@@ -208,10 +201,10 @@ def main():
         st.write("---")
 
         st.write("AI App created by @ ANKIT MISHRA")
+        
+    if user_question:
 
-
-
-
+        user_input(user_question)
 
     st.markdown(
 
