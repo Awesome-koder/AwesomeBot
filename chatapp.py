@@ -64,8 +64,7 @@ def user_input(user_question, pdf_docs):
   raw_text = get_pdf_text(pdf_docs)
   text_chunks = get_text_chunks(raw_text)
   new_db = get_vector_store(text_chunks)
-  query_embedding = embeddings.get_embedding(user_question)
-  scores, docs = new_db.search(query_embedding, k=10)
+  docs = new_db.similarity_search(user_question, k=10)
 
   chain = get_conversational_chain()
 
