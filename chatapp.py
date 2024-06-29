@@ -78,14 +78,11 @@ def user_input(user_question):
 
 def main():
     st.set_page_config("Awesome Bot", page_icon = ":scroll:")
-    st.header("Multi-PDF's 📚 - Chat Agent 🤖 ")
+    st.header("Multi-PDF's 📚 - CHATBOT 🤖 ")
 
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
-    if user_question:
-        user_input(user_question)
-
-    with st.sidebar:
+        with st.sidebar:
 
         st.image("img/Robot.jpg")
         st.write("---")
@@ -101,6 +98,9 @@ def main():
         
         st.write("---")
         st.write("AI App created by @ ANKIT MISHRA")
+
+    if user_question:
+        user_input(user_question)
 
 
     st.markdown(
