@@ -57,10 +57,12 @@ def get_conversational_chain():
 
 
 
-def user_input(user_question):
+def user_input(user_question, pdf_docs):
   embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
   # Create a new vector store for each user query
-  new_db = get_vector_store(get_text_chunks(get_pdf_text(pdf_docs)))
+  raw_text = get_pdf_text(pdf_docs)
+  text_chunks = get_text_chunks(raw_text)
+  new_db = get_vector_store(text_chunks)
   docs = new_db.similarity_search(user_question)
 
   chain = get_conversational_chain()
@@ -68,19 +70,15 @@ def user_input(user_question):
     
   response = chain(
       {"input_documents":docs, "question": user_question}
-      , return_only_outputs=True)
+     , return_only_outputs=True)
 
   print(response)
   st.write("Reply: ", response["output_text"])
 
 
-
-
 def main():
     st.set_page_config("Awesome Bot", page_icon = ":scroll:")
     st.header("Multi-PDF's 📚 - Chat Agent 🤖 ")
-
-    user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
     with st.sidebar:
 
@@ -91,16 +89,15 @@ def main():
         pdf_docs = st.file_uploader("Upload your PDF Files & \n Click on the Submit & Process Button ", accept_multiple_files=True)
         if st.button("Submit & Process"):
             with st.spinner("Processing..."): # user friendly message.
-                raw_text = get_pdf_text(pdf_docs) # get the pdf text
-                text_chunks = get_text_chunks(raw_text) # get the text chunks
-                get_vector_store(text_chunks) # create vector store
                 st.success("Done")
         
         st.write("---")
         st.write("AI App created by @ ANKIT MISHRA")
 
-    if user_question:
-        user_input(user_question)
+    user_question = st.text_input("Ask a Question from the PDF Files uploaded.. ✍️📝")
+
+    if user_question and 'pdf_docs' in locals():
+        user_input(user_question, pdf_docs)
 
 
     st.markdown(
