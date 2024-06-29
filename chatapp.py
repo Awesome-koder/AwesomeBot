@@ -60,7 +60,7 @@ def get_conversational_chain():
 def user_input(user_question):
   embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
   # Create a new vector store for each user query
-  new_db = get_vector_store(get_text_chunks(get_pdf_text(pdf_docs)))
+  new_db = FAISS.load_local("faiss_index",embeddings)
   docs = new_db.similarity_search(user_question)
 
   chain = get_conversational_chain()
