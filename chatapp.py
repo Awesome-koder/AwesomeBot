@@ -82,7 +82,7 @@ def main():
 
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
-        with st.sidebar:
+    with st.sidebar:
 
         st.image("img/Robot.jpg")
         st.write("---")
