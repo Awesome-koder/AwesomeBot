@@ -4,18 +4,15 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import google.generativeai as genai
-from langchain_community import vectorstores
-from langchain_community.vectorstores.faiss import FAISS
+from langchain.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 
-SEC_KEY = "AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ"
-
 load_dotenv()
-os.environ['GOOGLE_API_KEY']= SEC_KEY
-genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
+# os.getenv("GOOGLE_API_KEY")
+genai.configure(api_key=os.getenv("AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ"))
 
 def get_pdf_text(pdf_docs):
     text=""
@@ -28,7 +25,7 @@ def get_pdf_text(pdf_docs):
 
 
 def get_text_chunks(text):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=50000, chunk_overlap=1000)
     chunks = text_splitter.split_text(text)
     return chunks
 
@@ -79,8 +76,8 @@ def user_input(user_question):
 
 
 def main():
-    st.set_page_config("AWESOMEKODER_BOT", page_icon = ":scroll:")
-    st.header("Multi-PDF's 📚 - AwesomeKoder-BOT 🤖 ")
+    st.set_page_config("Multi PDF Chatbot", page_icon = ":scroll:")
+    st.header("Multi-PDF's 📚 - Chat Agent 🤖 ")
 
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
@@ -111,5 +108,8 @@ def main():
             © Copyright 2024 | Made with ❤️ by <a href="https://github.com/Awesome-koder/AwesomeBot" target="_blank">ANKIT MISHRA</a>
         </div>
         """,
+        unsafe_allow_html=True
     )
-main()
+
+if __name__ == "__main__":
+    main()
