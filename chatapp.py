@@ -32,7 +32,7 @@ def get_text_chunks(text):
 
 
 def get_vector_store(text_chunks):
-    embeddings = GoogleGenerativeAIEmbeddings(models = "model/embedding-001")
+    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
 
@@ -60,7 +60,7 @@ def get_conversational_chain():
 def user_input(user_question):
   embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
   # Create a new vector store for each user query
-  new_db = FAISS.load_local("faiss_index",embeddings)
+  new_db = get_vector_store(get_text_chunks(get_pdf_text(pdf_docs)))
   docs = new_db.similarity_search(user_question)
 
   chain = get_conversational_chain()
@@ -78,7 +78,7 @@ def user_input(user_question):
 
 def main():
     st.set_page_config("Awesome Bot", page_icon = ":scroll:")
-    st.header("Multi-PDF's 📚 - CHATBOT 🤖 ")
+    st.header("Multi-PDF's 📚 - Chat Agent 🤖 ")
 
     user_question = st.text_input("Ask a Question from the PDF Files uploaded .. ✍️📝")
 
