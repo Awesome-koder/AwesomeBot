@@ -1,5 +1,5 @@
 import streamlit as st
-import langchain_community.vectorstores.*
+import langchain_community
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
