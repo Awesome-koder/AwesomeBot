@@ -10,10 +10,10 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 
-GOOGLE_API_KEY = "AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ"
+SEC_KEY = "AIzaSyDOdmxN5a1r46nRZYykqN_u4D9pzfMMKRQ"
 
 load_dotenv()
-os.environ['GOOGLE_API_KEY']= GOOGLE_API_KEY
+os.environ['GOOGLE_API_KEY']= SEC_KEY
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 def get_pdf_text(pdf_docs):
