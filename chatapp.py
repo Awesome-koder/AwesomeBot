@@ -35,6 +35,7 @@ def get_vector_store(text_chunks):
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
+    return vector_store
 
 
 def get_conversational_chain():
@@ -63,14 +64,15 @@ def user_input(user_question, pdf_docs):
   raw_text = get_pdf_text(pdf_docs)
   text_chunks = get_text_chunks(raw_text)
   new_db = get_vector_store(text_chunks)
-  docs = new_db.similarity_search(user_question)
+  query_embedding = embeddings.encode(user_question)
+  scores, docs = new_db.search(query_embedding, k=10)
 
   chain = get_conversational_chain()
 
     
   response = chain(
       {"input_documents":docs, "question": user_question}
-     , return_only_outputs=True)
+    , return_only_outputs=True)
 
   print(response)
   st.write("Reply: ", response["output_text"])
