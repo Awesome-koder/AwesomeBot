@@ -79,7 +79,7 @@ def user_input(user_question, pdf_docs):
 
 def main():
     st.set_page_config("Awesome Bot", page_icon = ":scroll:")
-    st.header("Multi-PDF's 📚 - Chat Agent 🤖 ")
+    st.header("Multi-PDF's 📚 - CHATBOT 🤖 ")
 
     with st.sidebar:
 
