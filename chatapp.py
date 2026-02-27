@@ -419,27 +419,21 @@ button[kind="header"] {
 """, unsafe_allow_html=True)
     st.markdown("""
 <style>
-
-/* Target REAL sidebar collapse button */
-button[data-testid="collapsedControl"] {
-    animation: slideSide 1.6s ease-in-out infinite;
-}
-
-/* Smooth left-right slide animation */
-@keyframes slideSide {
-    0%   { transform: translateX(0px); }
-    50%  { transform: translateX(6px); }
-    100% { transform: translateX(0px); }
-}
-
-/* Only animate on mobile */
-@media (min-width: 768px) {
-    [data-testid="collapsedControl"] {
-        animation: none;
+    st.markdown("""
+<script>
+function openSidebarOnMobile() {
+    if (window.innerWidth <= 768) {
+        setTimeout(function() {
+            const btn = window.parent.document.querySelector('[data-testid="collapsedControl"]');
+            if (btn) {
+                btn.click();
+            }
+        }, 1000);
     }
 }
 
-</style>
+window.addEventListener("load", openSidebarOnMobile);
+</script>
 """, unsafe_allow_html=True)
     st.caption("Upload PDFs, build a searchable index, and ask questions with citations from your files.")
 
@@ -483,6 +477,7 @@ button[data-testid="collapsedControl"] {
 
 if __name__ == "__main__":
     main()
+
 
 
 
