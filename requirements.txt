@@ -1,0 +1,11 @@
+streamlit
+PyPDF2
+faiss-cpu
+google-generativeai
+python-dotenv
+langchain==0.2.14
+langchain-core==0.2.32
+langchain-community==0.2.12
+langchain-google-genai
+langchain-text-splitters
+pytest
