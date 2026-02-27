@@ -425,7 +425,7 @@ def main():
             padding: 12px;
             text-align: center;
         ">
-            (c) 2026 | Made with love by <a href="https://awesomekoder.com">AWESOME KODER</a>
+            © 2026 | Made with ❤ by <a href="https://awesomekoder.com">AWESOME KODER</a>
         </div>
         """,
         unsafe_allow_html=True,
@@ -434,3 +434,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
