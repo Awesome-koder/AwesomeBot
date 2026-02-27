@@ -391,7 +391,7 @@ def build_local_summary(vector_store, k: int = 8):
 
 def main():
     st.set_page_config(page_title="PDF Chatbot", page_icon=":scroll:", layout="wide")
-    st.title("PDF Reader AI")
+    st.title("PDF Reader AI 🤖")
     st.markdown("""
 <style>
 
@@ -477,6 +477,7 @@ window.addEventListener("load", openSidebarOnMobile);
 
 if __name__ == "__main__":
     main()
+
 
 
 
