@@ -417,6 +417,30 @@ button[kind="header"] {
 
 </style>
 """, unsafe_allow_html=True)
+    st.markdown("""
+<style>
+
+/* Target REAL sidebar collapse button */
+[data-testid="collapsedControl"] {
+    animation: slideSide 1.6s ease-in-out infinite;
+}
+
+/* Smooth left-right slide animation */
+@keyframes slideSide {
+    0%   { transform: translateX(0px); }
+    50%  { transform: translateX(6px); }
+    100% { transform: translateX(0px); }
+}
+
+/* Only animate on mobile */
+@media (min-width: 768px) {
+    [data-testid="collapsedControl"] {
+        animation: none;
+    }
+}
+
+</style>
+""", unsafe_allow_html=True)
     st.caption("Upload PDFs, build a searchable index, and ask questions with citations from your files.")
 
     pdf_docs, max_chunks, process_clicked = render_sidebar()
@@ -459,4 +483,5 @@ button[kind="header"] {
 
 if __name__ == "__main__":
     main()
+
 
