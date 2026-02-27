@@ -421,7 +421,7 @@ button[kind="header"] {
 <style>
 
 /* Target REAL sidebar collapse button */
-[data-testid="collapsedControl"] {
+button[data-testid="collapsedControl"] {
     animation: slideSide 1.6s ease-in-out infinite;
 }
 
@@ -483,5 +483,6 @@ button[kind="header"] {
 
 if __name__ == "__main__":
     main()
+
 
 
