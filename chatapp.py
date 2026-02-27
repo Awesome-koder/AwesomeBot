@@ -392,6 +392,31 @@ def build_local_summary(vector_store, k: int = 8):
 def main():
     st.set_page_config(page_title="PDF Chatbot", page_icon=":scroll:", layout="wide")
     st.title("PDF Reader AI")
+    st.markdown("""
+<style>
+
+/* Target sidebar collapse button */
+button[kind="header"] {
+    animation: pulseScale 1.8s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+/* Smooth scaling animation */
+@keyframes pulseScale {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+/* Optional: make animation only visible on mobile */
+@media (min-width: 768px) {
+    button[kind="header"] {
+        animation: none;
+    }
+}
+
+</style>
+""", unsafe_allow_html=True)
     st.caption("Upload PDFs, build a searchable index, and ask questions with citations from your files.")
 
     pdf_docs, max_chunks, process_clicked = render_sidebar()
@@ -434,4 +459,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
