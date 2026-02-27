@@ -450,7 +450,7 @@ button[kind="header"] {
             padding: 12px;
             text-align: center;
         ">
-            © 2026 | Made with ❤ by <a href="https://awesomekoder.com">AWESOME KODER</a>
+            © 2026 | Made with  ❤  by <a href="https://awesomekoder.com">AWESOME KODER</a>
         </div>
         """,
         unsafe_allow_html=True,
@@ -459,3 +459,4 @@ button[kind="header"] {
 
 if __name__ == "__main__":
     main()
+
