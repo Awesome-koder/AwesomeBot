@@ -417,9 +417,10 @@ button[kind="header"] {
 
 </style>
 """, unsafe_allow_html=True)
-   st.markdown("""
- <script>
-  function openSidebarOnMobile() {
+
+    st.markdown("""
+<script>
+function openSidebarOnMobile() {
     if (window.innerWidth <= 768) {
         setTimeout(function() {
             const btn = window.parent.document.querySelector('[data-testid="collapsedControl"]');
@@ -428,8 +429,8 @@ button[kind="header"] {
             }
         }, 1000);
     }
-  }
- window.addEventListener("load", openSidebarOnMobile);
+}
+window.addEventListener("load", openSidebarOnMobile);
 </script>
 """, unsafe_allow_html=True)
     st.caption("Upload PDFs, build a searchable index, and ask questions with citations from your files.")
@@ -462,6 +463,7 @@ button[kind="header"] {
 
 if __name__ == "__main__":
     main()
+
 
 
 
