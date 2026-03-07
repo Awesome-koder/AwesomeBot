@@ -455,16 +455,7 @@ st.markdown("""
         st.caption(f"Chunks indexed: {st.session_state['doc_chunks']}")
     st.markdown(
         """
-        <div style="
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #96a7ab;
-            color: white;
-            padding: 12px;
-            text-align: center;
-        ">
+        <div style=" position: fixed; bottom: 0; left: 0; width: 100%; background-color: #96a7ab; color: white; padding: 12px; text-align: center ">
             © 2026 | Made with  ❤  by <a href="https://awesomekoder.com">AWESOME KODER</a>
         </div>
         """,
@@ -474,6 +465,7 @@ st.markdown("""
 
 if __name__ == "__main__":
     main()
+
 
 
 
