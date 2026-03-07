@@ -417,7 +417,7 @@ button[kind="header"] {
 
 </style>
 """, unsafe_allow_html=True)
-st.markdown("""
+   st.markdown("""
  <script>
   function openSidebarOnMobile() {
     if (window.innerWidth <= 768) {
@@ -465,6 +465,7 @@ st.markdown("""
 
 if __name__ == "__main__":
     main()
+
 
 
 
