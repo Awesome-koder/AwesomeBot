@@ -418,11 +418,11 @@ def _theme_tokens() -> dict[str, str]:
             "composer_border": "rgba(56, 189, 248, 0.26)",
             "footer_link": "#7dd3fc",
             "status_bg": "rgba(15, 23, 42, 0.82)",
-            "button_bg": "#e2e8f0",
+            "button_bg": "#eb801c",
             "button_text": "#0f172a",
             "button_border": "rgba(226, 232, 240, 0.7)",
             "button_hover": "#f8fafc",
-            "button_secondary_bg": "rgba(15, 23, 42, 0.88)",
+            "button_secondary_bg": "rgba(15, 23, 42, 0.12)",
             "button_secondary_text": "#e2e8f0",
             "input_surface": "rgba(15, 23, 42, 0.92)",
             "input_border": "rgba(148, 163, 184, 0.28)",
@@ -449,11 +449,11 @@ def _theme_tokens() -> dict[str, str]:
         "composer_border": "rgba(15, 23, 42, 0.08)",
         "footer_link": "#60a5fa",
         "status_bg": "rgba(255, 255, 255, 0.78)",
-        "button_bg": "#0f172a",
+        "button_bg": "#eb801c",
         "button_text": "#f8fafc",
         "button_border": "rgba(15, 23, 42, 0.12)",
-        "button_hover": "#1e293b",
-        "button_secondary_bg": "rgba(255, 255, 255, 0.92)",
+        "button_hover": "#e09d45",
+        "button_secondary_bg": "rgba(15, 23, 42, 0.12)",
         "button_secondary_text": "#0f172a",
         "input_surface": "rgba(255, 255, 255, 0.95)",
         "input_border": "rgba(15, 23, 42, 0.12)",
@@ -489,7 +489,7 @@ def render_sidebar():
         help="Limit chunks to control cost and latency.",
     )
 
-    process_clicked = st.sidebar.button("Process PDFs", type="secondary")
+    process_clicked = st.sidebar.button("Process PDFs", type="primary")
 
     return pdf_docs, max_chunks, process_clicked
 
@@ -876,11 +876,12 @@ def _build_app_styles() -> str:
         [data-testid="stSidebar"] {{
             background: var(--sidebar-bg);
             border-right: 1px solid var(--sidebar-border);
-            height: 100dvh;
+            height: 100vh;
+            z-index: 10000;
         }}
-
         [data-testid="stSidebar"] > div {{
             height: 100%;
+            z-index: 10000;
         }}
 
         [data-testid="stSidebar"],
@@ -893,6 +894,7 @@ def _build_app_styles() -> str:
         span,
         h1, h2, h3 {{
             color: var(--text-main) !important;
+            z-index: 10000;
         }}
 
         [data-testid="stCaptionContainer"] *,
@@ -1015,6 +1017,7 @@ def _build_app_styles() -> str:
             background: var(--chat-input-bg);
             border: 1px solid var(--composer-border);
             border-radius: 24px;
+            outline: none !important;
             padding: 0.42rem;
             box-shadow: var(--shadow);
             backdrop-filter: blur(14px);
@@ -1024,6 +1027,7 @@ def _build_app_styles() -> str:
         div[data-testid="stChatInput"] input,
         div[data-testid="stChatInput"] button {{
             color: var(--text-main) !important;
+            outline: none !important;
         }}
 
         .bottom-support {{
@@ -1031,7 +1035,7 @@ def _build_app_styles() -> str:
             left: clamp(var(--sidebar-width), 23vw, 21rem);
             right: 1.25rem;
             bottom: 0.75rem;
-            z-index: 49;
+            z-index: 1000;
         }}
 
         .chat-disclaimer {{
@@ -1076,7 +1080,8 @@ def _build_app_styles() -> str:
             div[data-testid="stChatInput"] {{
                 left: 0.85rem;
                 right: 0.85rem;
-                bottom: 5.9rem;
+                bottom: 8.9rem;
+                outline: none !important;
             }}
 
             .bottom-support {{
@@ -1117,7 +1122,7 @@ def _build_app_styles() -> str:
 
 def _build_footer_markup() -> str:
     current_year = datetime.now().year
-    footer_text = html.escape(f"AwesomeBot (c) {current_year} | Made with care by ")
+    footer_text = html.escape(f"AwesomeBot © {current_year} | Made with _❤_ by ")
     return (
         '<div class="bottom-support">'
         '<div class="chat-disclaimer">AwesomeBot can make mistakes. Double-check important info.</div>'
