@@ -453,18 +453,16 @@ button[kind="header"] {
 
     if "doc_chunks" in st.session_state:
         st.caption(f"Chunks indexed: {st.session_state['doc_chunks']}")
-    st.markdown(
-        """
-        <div style=" position: fixed; bottom: 0; left: 0; width: 100%; background-color: #96a7ab; color: white; padding: 12px; text-align: center ">
-            © 2026 | Made with  ❤  by <a href="https://awesomekoder.com">AWESOME KODER</a>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    st.markdown("""
+    <div style="position:fixed; bottom:0; left:0; width:100%; background-color:#96a7ab; color:white; padding:12px; text-align:center;">
+       AwesomeBot © 2026 | Made with ❤ by <a href="https://awesomekoder.com" target="_blank">AWESOME KODER</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
     main()
+
 
 
 
